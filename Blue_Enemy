@@ -1,0 +1,26 @@
+using UnityEngine;
+
+public class EnemyTwo : MonoBehaviour
+{
+    private float speed = 4.5f;
+    private float amplitude = 2f; // side-to-side movement
+    private float frequency = 2f;
+    private Vector3 startPosition;
+
+    void Start()
+    {
+        startPosition = transform.position;
+    }
+
+    void Update()
+    {
+        // Moves downward and oscillates left-right
+        float x = Mathf.Sin(Time.time * frequency) * amplitude;
+        transform.position = new Vector3(startPosition.x + x, transform.position.y - speed * Time.deltaTime, 0);
+
+        if (transform.position.y < -6.5f)
+        {
+            Destroy(gameObject);
+        }
+    }
+}
